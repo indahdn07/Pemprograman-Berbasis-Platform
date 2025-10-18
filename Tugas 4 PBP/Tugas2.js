@@ -72,4 +72,5 @@ for (let country in result) {
   console.log(`    totalWin: ${result[country].totalWin}`);
   console.log("  },");
 }
+
 console.log("}");
