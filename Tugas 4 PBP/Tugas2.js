@@ -37,7 +37,7 @@ var motoGP = [
   }
 ];
 
-let result = {};
+let winData = {};
 
 for (let i = 0; i < motoGP.length; i++) {
   let country = motoGP[i].winner.country;
@@ -45,32 +45,33 @@ for (let i = 0; i < motoGP.length; i++) {
   let winCircuit = motoGP[i].circuit;
   let winLocation = motoGP[i].location;
 
-  if (!result[country]) {
-    result[country] = {
+  if (!winData[country]) {
+    winData[country] = {
       winningCircuits: [],
       totalWin: 0
     };
   }
 
 
-result[country].winningCircuits.push({
+winData[country].winningCircuits.push({
     name: name,
     winLocation: `${winCircuit}, ${winLocation}`
   });
-  result[country].totalWin++;
+  winData[country].totalWin++;
 }
 
 console.log("{");
-for (let country in result) {
+for (let country in winData) {
   console.log(`  ${country}: {`);
   console.log(`    winningCircuits: [`);
-  result[country].winningCircuits.forEach((winner, index) => {
-    let comma = index === result[country].winningCircuits.length - 1 ? "" : ",";
+  winData[country].winningCircuits.forEach((winner, index) => {
+    let comma = index === winData[country].winningCircuits.length - 1 ? "" : ",";
     console.log(`      { name: '${winner.name}', winLocation: '${winner.winLocation}' }${comma}`);
   });
   console.log("    ],");
-  console.log(`    totalWin: ${result[country].totalWin}`);
+  console.log(`    totalWin: ${winData[country].totalWin}`);
   console.log("  },");
 }
 
 console.log("}");
+
